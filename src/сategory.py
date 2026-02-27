@@ -3,9 +3,8 @@ class Category:
     name: str # Название категории продукта
     description: str # Описание категории продукта
     products: list # Список товаров категории
-    #Атрибуты класса
-    category_count = 0
-    product_count = 0
+    category_count = 0 #Атрибуты класса счетчик категорий продукта
+    product_count = 0 #Атрибуты класса счетчик всех продуктов
 
 
     def __init__(self, name, description, products = None):
@@ -14,6 +13,6 @@ class Category:
         self.products = products if products else []
 
         Category.category_count +=1
-        Category.product_count = len(products)
+        Category.product_count += len(products) if products else 0
 
 
