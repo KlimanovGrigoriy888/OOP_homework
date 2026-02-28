@@ -1,4 +1,3 @@
-
 def test_first_product(products_first):
     assert products_first.name == "Samsung Galaxy S23 Ultra"
     assert products_first.description == "256GB, Серый цвет, 200MP камера"
