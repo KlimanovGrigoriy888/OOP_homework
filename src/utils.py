@@ -40,5 +40,5 @@ if __name__ == "__main__":
     print(product_category[0].name)
     print(product_category[1].product_count)
     print(product_category[1].description)
-    print(product_category[1].products[0].name)
+    print(product_category[1].products)
     print(product_category[1].name)
