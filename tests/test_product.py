@@ -7,27 +7,31 @@ def test_product():
     Product.added_name_products = {}
 
     # Тест для проверки добавления нового продукта product_0
-    product_0 = Product.new_product({
-        "name": "Samsung Galaxy S23 Ultra",
-        "description": "256GB, Серый цвет, 200MP камера",
-        "price": 18000.0,
-        "quantity": 5
-    })
+    product_0 = Product.new_product(
+        {
+            "name": "Samsung Galaxy S23 Ultra",
+            "description": "256GB, Серый цвет, 200MP камера",
+            "price": 18000.0,
+            "quantity": 5,
+        }
+    )
     assert product_0.quantity == 5
     assert product_0.price == 18000.0
 
     # Тест для проверки добавления нового продукта product_1
-    product_1 = Product.new_product({
-        "name": "Samsung Galaxy S23 Ultra",
-        "description": "256GB, Серый цвет, 200MP камера",
-        "price": 18000.0,
-        "quantity": 5
-    })
+    product_1 = Product.new_product(
+        {
+            "name": "Samsung Galaxy S23 Ultra",
+            "description": "256GB, Серый цвет, 200MP камера",
+            "price": 18000.0,
+            "quantity": 5,
+        }
+    )
     assert product_1.quantity == 5
     assert product_1.price == 18000.0
 
     # Проверка состояния атрибута класса в виде словаря который хранит данные имени и цене товаров.
-    assert Product.added_name_products == {'Samsung Galaxy S23 Ultra': [10, 18000.0]}
+    assert Product.added_name_products == {"Samsung Galaxy S23 Ultra": [10, 18000.0]}
 
     # Тест сеттера
 
@@ -36,12 +40,12 @@ def test_product():
     assert product_1.price == 200000.0
 
     # 2. Снижение цены — СОГЛАСИЕ (имитируем ввод 'y')
-    with patch('builtins.input', return_value='y'):
+    with patch("builtins.input", return_value="y"):
         product_1.price = 150000.0
         assert product_1.price == 150000.0
 
     # 3. Снижение цены — ОТКАЗ (имитируем ввод 'n')
-    with patch('builtins.input', return_value='n'):
+    with patch("builtins.input", return_value="n"):
         product_1.price = 100000.0
         # Цена должна остаться 150000.0, так как мы нажали 'n'
         assert product_1.price == 150000.0

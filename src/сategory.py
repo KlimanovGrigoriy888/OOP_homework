@@ -3,6 +3,7 @@ from src.product import Product
 
 class Category:
     """Класс для описания категории продукта"""
+
     name: str  # Название категории продукта
     description: str  # Описание категории продукта
     __products: list  # Список товаров категории
@@ -15,7 +16,7 @@ class Category:
         self.price = None
         self.name = name
         self.description = description
-        self.__products = products if products else [] #приватный атрибут класса Category
+        self.__products = products if products else []  # приватный атрибут класса Category
 
         if name in Category.added_category_products:
             pass
@@ -25,12 +26,10 @@ class Category:
 
         Category.product_count += len(products) if products else 0
 
-
     # Метод добавления продукта в приватный атрибут продукта категории продукта.
     def add_product(self, new_product: Product):
         self.__products.append(new_product)
         Category.product_count += 1
-
 
     # Метод с помощью которого возможно посмотреть приватный атрибут продуктов
     @property
@@ -39,5 +38,3 @@ class Category:
         for product in self.__products:
             product_list += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
         return product_list
-
-

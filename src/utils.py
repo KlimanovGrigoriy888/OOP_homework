@@ -14,16 +14,16 @@ def read_json(path: str) -> dict[list]:
 
 
 def make_objects_from_json(data: dict):
-    """" Функция, принимает путь к файлу с категориями продуктов и продуктами,
-     и создает объекты классов Category и Product"""
+    """ " Функция, принимает путь к файлу с категориями продуктов и продуктами,
+    и создает объекты классов Category и Product"""
     category_product = []
     for category in data:
         products = []
-        for product in category['products']:
+        for product in category["products"]:
             # В новый словарь создаем список продукта на основе класса Product продукта
             products.append(Product(**product))
         # В существующем списке категории продукта перезаписываем список списком класса Product
-        category['products'] = products
+        category["products"] = products
         # В новый словарь категории продуктов добавляем категории продуктов на основе класса категории продукта
         category_product.append(Category(**category))
 
