@@ -5,16 +5,20 @@ class Product:
     description: str  # Описание продукта
     price: float  # Цена продукта
     quantity: int  # Количество в наличии
-
+    added_name_products: dict[str|int]
     added_name_products = {}
 
-    def __init__(self, name, description, price, quantity):
+    def __init__(self, name: str, description: str, price: float, quantity: int):
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
 
-    # Класс метод добавления продукта
+    # Магический метод для вывода информации об объекте класса продукта.
+    def __str__(self):
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+
+    # Класс метод добавления продукта, вызов метода через атрибут класса.
     @classmethod
     def new_product(cls, new_product: dict):
         product = cls(
@@ -55,3 +59,7 @@ class Product:
         elif new_price > Product.added_name_products[self.name][1]:
             self.__price = new_price
             Product.added_name_products[self.name][1] = new_price
+
+    def __add__(self, other):
+        """Магический метод для сложения суммарной стоимости продукта с суммарной стоимостью другого продукта"""
+        return (self.price * self.quantity) + (other.price * other.quantity)
