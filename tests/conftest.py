@@ -5,11 +5,6 @@ from src.сategory import Category
 
 
 @pytest.fixture
-def products_first():
-    return Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
-
-
-@pytest.fixture
 def category_first_category():
     return Category(
         "Смартфоны",
