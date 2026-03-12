@@ -17,24 +17,40 @@ class Category:
         self.name = name
         self.description = description
         self.__products = products if products else []  # приватный атрибут класса Category
-
+        # Условие добавления счетчика категории продукта с проверкой дубликатов названия категории
         if name in Category.added_category_products:
             pass
         if name not in Category.added_category_products:
             Category.added_category_products[name] = name
             Category.category_count += 1
-
+        # Счетчик атрибут класса для подсчета классов добавленных продуктов
         Category.product_count += len(products) if products else 0
+
+    def __str__(self):
+        # Подсчет общего количества продуктов в категории продукта
+        full_quantity_products = 0
+        for product in self.__products:
+            full_quantity_products += product.quantity
+        return f"{self.name}, количество продуктов: {full_quantity_products} шт."
 
     # Метод добавления продукта в приватный атрибут продукта категории продукта.
     def add_product(self, new_product: Product):
         self.__products.append(new_product)
         Category.product_count += 1
 
-    # Метод с помощью которого возможно посмотреть приватный атрибут продуктов
+    # Метод 'getter' с помощью которого возможно посмотреть приватный атрибут продуктов
     @property
     def products(self):
         product_list = ""
         for product in self.__products:
-            product_list += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
+            product_list += f"{str(product)}\n"
         return product_list
+
+    # Метод getter экземпляра класса который создает список товаров для экземпляра класса категории продукта.
+    @property
+    def products_list(self):
+        products_list = []
+        for product in self.__products:
+            products_list.append(str(product))
+        return products_list
+

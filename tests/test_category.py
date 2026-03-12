@@ -44,3 +44,6 @@ def test_category_second_category(category_first_category, category_second_categ
     )
     assert Category.category_count == 2
     assert Category.product_count == 4
+
+    # Проверка вывода информации о категории
+    assert str(category_first_category) == "Смартфоны, количество продуктов: 13 шт."
