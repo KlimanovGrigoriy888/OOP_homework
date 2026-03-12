@@ -1,5 +1,6 @@
 from src.products_iterator import ProductIterator
 
+
 # Тест для класса ProductIterator, проверка продуктов в экземпляре класса.
 def test_products_iterator(category_first_category):
     products = [
@@ -8,6 +9,6 @@ def test_products_iterator(category_first_category):
     ]
     product_list = ProductIterator(category_first_category)
     for i, product in enumerate(product_list):
+        # print(products[i])
         assert str(product) == products[i]
         assert str(product) == products[i]
-
