@@ -55,7 +55,7 @@ if __name__ == "__main__":
     print(grass2.country)
     print(grass2.germination_period)
     print(grass2.color)
-    print("//////////////////")
+
     smartphone_sum = smartphone1 + smartphone2
     print(smartphone_sum)
 
@@ -84,8 +84,7 @@ if __name__ == "__main__":
         print("Возникла ошибка TypeError при добавлении не продукта")
     else:
         print("Не возникла ошибка TypeError при добавлении не продукта")
-
-    ## Старые проверки №3
+    # # Старые проверки 3
     # product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
     # product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
     # product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
@@ -118,9 +117,9 @@ if __name__ == "__main__":
     # product_list = ProductIterator(category1)
     # next(iter(product_list))
     # next(iter(product_list))
-    # product_iter = ProductIterator(category1)
-    # for product in product_iter:
-    #     print(product)
+    # # product_iter = ProductIterator(category1)
+    # # for product in product_iter:
+    # #     print(product)
 
 
     # #Старые проверки №2
