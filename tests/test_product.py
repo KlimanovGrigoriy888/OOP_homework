@@ -61,4 +61,3 @@ def test_product():
     # 4. Некорректная цена
     product_1.price = -100
     assert product_1.price == 150000.0
-

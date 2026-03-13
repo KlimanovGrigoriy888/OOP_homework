@@ -1,3 +1,5 @@
+from src.lawngrass import LawnGrass
+from src.smartphone import Smartphone
 from src.product import Product
 from src.products_iterator import ProductIterator
 from src.сategory import Category

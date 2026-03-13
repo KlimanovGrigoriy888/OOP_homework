@@ -5,8 +5,10 @@ class Product:
     description: str  # Описание продукта
     price: float  # Цена продукта
     quantity: int  # Количество в наличии
-    added_name_products: dict[str|int]
-    added_name_products = {}
+
+    # Словарь для хранения имен добавленных продуктов с последними значениями цен и количества
+    added_name_products: dict[str|int]  # Анотация типа словаря
+    added_name_products = {}  # Создание пустого словаря
 
     def __init__(self, name: str, description: str, price: float, quantity: int):
         self.name = name
@@ -15,7 +17,7 @@ class Product:
         self.quantity = quantity
 
     # Магический метод для вывода информации об объекте класса продукта.
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     # Класс метод добавления продукта, вызов метода через атрибут класса.
@@ -28,11 +30,15 @@ class Product:
             quantity=new_product.get("quantity", 0),
         )
         if product.name in Product.added_name_products:
+            #  добавление количества продукта если он уже имеется в словаре имен продуктов с количеством и ценой
             Product.added_name_products[product.name][0] += new_product.get("quantity", 0)
+            #  Условие если товар уже имеется в словаре имен продуктов с количеством и ценой, но цена выше старой
             if new_product.get("price", 0.0) > Product.added_name_products[product.name][1]:
                 Product.added_name_products[product.name][1] = new_product.get("price", 0.0)
+            #  Условие если товар уже имеется в словаре имен продуктов с количеством и ценой, но цена ниже старой
             else:
                 pass
+        #  добавление количества продукта если он не имеется в словаре имен продуктов с количеством и ценой
         else:
             Product.added_name_products[product.name] = [new_product.get("quantity", 0), new_product.get("price", 0.0)]
         return product
@@ -62,4 +68,7 @@ class Product:
 
     def __add__(self, other):
         """Магический метод для сложения суммарной стоимости продукта с суммарной стоимостью другого продукта"""
-        return (self.price * self.quantity) + (other.price * other.quantity)
+        if type(other) is Product:
+            return (self.price * self.quantity) + (other.price * other.quantity)
+        else:
+            raise TypeError("Возникла ошибка TypeError при попытке сложения")

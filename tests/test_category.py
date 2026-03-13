@@ -1,3 +1,5 @@
+import pytest
+
 from src.сategory import Category
 from src.product import Product
 
@@ -46,4 +48,11 @@ def test_category_second_category(category_first_category, category_second_categ
     assert Category.product_count == 4
 
     # Проверка вывода информации о категории
+    print(category_first_category)
     assert str(category_first_category) == "Смартфоны, количество продуктов: 13 шт."
+
+
+def test_category_add_error(category_second_category):
+    # Проверка добавления продукта не родительского класса через метод добавления продукта экземпляра класса
+    with pytest.raises(TypeError):
+        category_second_category.add_product("Not a product")

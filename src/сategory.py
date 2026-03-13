@@ -35,8 +35,13 @@ class Category:
 
     # Метод добавления продукта в приватный атрибут продукта категории продукта.
     def add_product(self, new_product: Product):
-        self.__products.append(new_product)
-        Category.product_count += 1
+        #  Проверка добавленного продукта принадлежности к родительскому классу Product
+        if issubclass(new_product.__class__, Product):
+            self.__products.append(new_product)
+            Category.product_count += 1
+        # Если не принадлежит родительскому классу, возникает исключение TypeError
+        else:
+            raise TypeError("Возникла ошибка TypeError при добавлении не продукта")
 
     # Метод 'getter' с помощью которого возможно посмотреть приватный атрибут продуктов
     @property
@@ -53,4 +58,3 @@ class Category:
         for product in self.__products:
             products_list.append(str(product))
         return products_list
-
