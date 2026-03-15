@@ -22,7 +22,7 @@ class LawnGrass(Product):
         country: str,
         germination_period: str,
         color: str,
-    ):
+    )  -> None:
         #  Функция которая, вызывает методы и атрибуты родительского класса
         super().__init__(name, description, price, quantity)
         self.country = country

@@ -24,7 +24,7 @@ class Smartphone(Product):
         model: str,
         memory: int,
         color: str,
-    ):
+    )  -> None:
         #  Функция которая, вызывает методы и атрибуты родительского класса
         super().__init__(name, description, price, quantity)
         self.efficiency = efficiency
@@ -38,3 +38,6 @@ class Smartphone(Product):
             return (self.price * self.quantity) + (other.price * other.quantity)
         else:
             raise TypeError("Возникла ошибка TypeError при попытке сложения")
+
+if __name__ == "__main__":
+    print(Smartphone.__mro__)
