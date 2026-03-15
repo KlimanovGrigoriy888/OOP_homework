@@ -7,7 +7,7 @@ class BaseProduct(ABC):
     класса продукта и метод __add__ - сложения суммарной стоимости продукта с суммарной стоимостью другого продукта."""
 
     @abstractmethod
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         pass
 
@@ -16,5 +16,5 @@ class BaseProduct(ABC):
         pass
 
     @abstractmethod
-    def __add__(self, other):
+    def __add__(self, other: float) -> float:
         pass

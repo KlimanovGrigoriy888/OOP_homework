@@ -10,6 +10,7 @@ class Category:
     category_count = 0  # Атрибуты класса счетчик категорий продукта
     product_count = 0  # Атрибуты класса счетчик классов добавленных продуктов
 
+    added_category_products: dict[str]
     added_category_products = {}
 
     def __init__(self, name, description, products=None):
@@ -26,7 +27,7 @@ class Category:
         # Счетчик атрибут класса для подсчета классов добавленных продуктов
         Category.product_count += len(products) if products else 0
 
-    def __str__(self):
+    def __str__(self) -> str:
         # Подсчет общего количества продуктов в категории продукта
         full_quantity_products = 0
         for product in self.__products:

@@ -11,7 +11,7 @@ class Product(BaseProduct, PrintMixin):
     quantity: int  # Количество в наличии
 
     # Словарь для хранения имен добавленных продуктов с последними значениями цен и количества
-    added_name_products: dict[str|int]  # Анотация типа словаря
+    added_name_products: dict  # Анотация типа словаря
     added_name_products = {}  # Создание пустого словаря
 
     def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
@@ -50,12 +50,12 @@ class Product(BaseProduct, PrintMixin):
 
     # Метод геттер для вывода данных приватного атрибута цены
     @property
-    def price(self):
+    def price(self) -> float:
         return self.__price
 
     # Setter для установки атрибуту цена нового значения цены
     @price.setter
-    def price(self, new_price: float):
+    def price(self, new_price: float) -> None:
         if new_price <= 0:
             print("Цена не должна быть нулевая или отрицательная")
         elif new_price <= Product.added_name_products[self.name][1]:
@@ -71,12 +71,13 @@ class Product(BaseProduct, PrintMixin):
             self.__price = new_price
             Product.added_name_products[self.name][1] = new_price
 
-    def __add__(self, other):
+    def __add__(self, other) -> float:
         """Магический метод для сложения суммарной стоимости продукта с суммарной стоимостью другого продукта"""
         if type(other) is Product:
             return (self.price * self.quantity) + (other.price * other.quantity)
         else:
             raise TypeError("Возникла ошибка TypeError при попытке сложения")
+
 
 # if __name__ == "__main__":
 #
@@ -84,17 +85,17 @@ class Product(BaseProduct, PrintMixin):
 #     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
 #     product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
 
-    # print(product1.name)
-    # print(product1.description)
-    # print(product1.price)
-    # print(product1.quantity)
-    #
-    # print(product2.name)
-    # print(product2.description)
-    # print(product2.price)
-    # print(product2.quantity)
-    #
-    # print(product3.name)
-    # print(product3.description)
-    # print(product3.price)
-    # print(product3.quantity)
+# print(product1.name)
+# print(product1.description)
+# print(product1.price)
+# print(product1.quantity)
+#
+# print(product2.name)
+# print(product2.description)
+# print(product2.price)
+# print(product2.quantity)
+#
+# print(product3.name)
+# print(product3.description)
+# print(product3.price)
+# print(product3.quantity)
