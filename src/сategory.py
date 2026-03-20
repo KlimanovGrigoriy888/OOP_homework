@@ -32,15 +32,14 @@ class Category:
 
     def __str__(self) -> str:
         # Подсчет общего количества продуктов в категории продукта
-        full_quantity_products = 0
-        for product in self.__products:
-            full_quantity_products += product.quantity
+        # упростил код, оказывается функция sum() умеет делать next, тем самым распаковывать генераторное выражение
+        full_quantity_products = sum(product.quantity for product in self.__products)
         return f"{self.name}, количество продуктов: {full_quantity_products} шт."
 
     # Метод добавления продукта в приватный атрибут продукта категории продукта.
-    def add_product(self, new_product: Product):
+    def add_product(self, new_product: Product) -> None:
         #  Проверка добавленного продукта принадлежности к родительскому классу Product
-        if issubclass(new_product.__class__, Product):
+        if isinstance(new_product, Product):
             self.__products.append(new_product)
             Category.product_count += 1
         # Если не принадлежит родительскому классу, возникает исключение TypeError
