@@ -36,4 +36,3 @@ def test_add_smartphone_assert():
     # Тест на исключение добавления продукта с нулевым количеством
     with pytest.raises(ValueError):
         Smartphone("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 0, 90.3, "Note 11", 1024, "Синий")
-

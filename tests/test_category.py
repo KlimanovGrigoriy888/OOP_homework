@@ -1,6 +1,5 @@
 import pytest
 
-from src.exceptions import ZeroPriceAddProduct
 from src.сategory import Category
 from src.product import Product
 
