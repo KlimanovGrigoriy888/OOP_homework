@@ -1,3 +1,6 @@
+from itertools import product
+
+from src.exceptions import ZeroPriceAddProduct
 from src.product import Product
 
 
@@ -54,8 +57,16 @@ class Category:
 
     # Метод getter экземпляра класса который создает список товаров для экземпляра класса категории продукта.
     @property
-    def products_list(self):
+    def products_list(self) -> list:
         products_list = []
         for product in self.__products:
             products_list.append(str(product))
         return products_list
+
+    # Метод подсчитывает средний ценник всех товаров категории продукта
+    def middle_price(self):
+        # Отлавливаем исключение ZeroDivisionError при условии если список продуктов категории пустой и возвращаем 0
+        try:
+            return round(sum(product.price for product in self.__products) / len(self.__products), 2)
+        except ZeroDivisionError:
+            return 0
