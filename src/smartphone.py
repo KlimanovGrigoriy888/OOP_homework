@@ -26,14 +26,14 @@ class Smartphone(Product):
         color: str,
     ) -> None:
 
-        #  Функция которая, вызывает методы и атрибуты родительского класса
+        #  Функция super() которая, создает путь к методам и атрибутам родительского класса
         super().__init__(name, description, price, quantity)
         self.efficiency = efficiency
         self.model = model
         self.memory = memory
         self.color = color
 
-    def __add__(self, other):
+    def __add__(self, other: Product):
         """Магический метод для сложения суммарной стоимости продукта с суммарной стоимостью другого продукта"""
         if type(other) is Smartphone:
             return (self.price * self.quantity) + (other.price * other.quantity)
