@@ -1,6 +1,3 @@
-from itertools import product
-
-from src.exceptions import ZeroPriceAddProduct
 from src.product import Product
 
 
@@ -9,15 +6,18 @@ class Category:
 
     name: str  # Название категории продукта
     description: str  # Описание категории продукта
-    __products: list  # Список товаров категории
-    category_count = 0  # Атрибуты класса счетчик категорий продукта
-    product_count = 0  # Атрибуты класса счетчик классов добавленных продуктов
+    __products: list[Product]  # Список товаров категории Product
 
-    added_category_products: dict[str]
+    category_count = 0  # Атрибуты класса счетчик категорий продукта
+    product_count = 0  # Атрибуты класса счетчик добавленных продуктов класса Product
+
+    # словарь добавленных категорий продукта для проверки дубликатов названий категорий для правильного подсчета
+    # количества добавленных категорий продукта category_count
+    added_category_products: dict[str, str]
     added_category_products = {}
 
-    def __init__(self, name, description, products=None):
-        self.price = None
+    def __init__(self, name: str, description: str, products=None):
+        # self.price = None
         self.name = name
         self.description = description
         self.__products = products if products else []  # приватный атрибут класса Category
@@ -27,7 +27,7 @@ class Category:
         if name not in Category.added_category_products:
             Category.added_category_products[name] = name
             Category.category_count += 1
-        # Счетчик атрибут класса для подсчета классов добавленных продуктов
+        # Счетчик атрибут класса для подсчета добавленных продуктов класса Product
         Category.product_count += len(products) if products else 0
 
     def __str__(self) -> str:
