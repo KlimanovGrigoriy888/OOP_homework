@@ -82,4 +82,4 @@ def test_product_assert():
 def test_base_product_cannot_instantiate():
     # Тест базового класса на инициализацию
     with pytest.raises(TypeError):
-        product_with_base = BaseProduct()
+        BaseProduct()

@@ -1,7 +1,7 @@
 import json
 import os
 from json import JSONDecodeError
-from typing import Dict, Any
+from typing import Any
 
 from src.product import Product
 from src.сategory import Category
