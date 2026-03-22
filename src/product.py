@@ -1,5 +1,4 @@
 from src.base_product import BaseProduct
-from src.exceptions import ZeroPriceAddProduct
 from src.print_mixin import PrintMixin
 
 
