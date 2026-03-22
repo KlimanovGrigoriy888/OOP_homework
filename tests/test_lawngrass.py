@@ -1,5 +1,7 @@
 import pytest
 
+from src.lawngrass import LawnGrass
+
 
 def test_init_lawngrass(lawngrass_new_1, lawngrass_new_2):
     assert lawngrass_new_1.name == "Газонная трава"
@@ -26,3 +28,9 @@ def test_add_lawngrass(lawngrass_new_1, lawngrass_new_2):
 def test_add_lawngrass_error(lawngrass_new_1, smartphone_new_1):
     with pytest.raises(TypeError):
         lawngrass_new_1 + smartphone_new_1
+
+
+def test_add_lawngrass_assert():
+    # Тест на исключение добавления продукта с нулевым количеством
+    with pytest.raises(ValueError):
+        LawnGrass("Газонная трава", "Элитная трава для газона", 500.0, 0, "Россия", "7 дней", "Зеленый")

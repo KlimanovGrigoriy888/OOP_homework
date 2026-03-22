@@ -18,7 +18,11 @@ class Product(BaseProduct, PrintMixin):
         self.name = name
         self.description = description
         self.__price = price
-        self.quantity = quantity
+        # Проверка создания нового продукта на количество, если количество равно нулю возникает исключение
+        if quantity > 0:
+            self.quantity = quantity
+        else:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
         super().__init__()
 
     # Магический метод для вывода информации об объекте класса продукта.
@@ -53,7 +57,7 @@ class Product(BaseProduct, PrintMixin):
     def price(self) -> float:
         return self.__price
 
-    # Setter для установки атрибуту цена нового значения цены
+    # Setter для установки атрибуту price нового значения цены
     @price.setter
     def price(self, new_price: float) -> None:
         if new_price <= 0:

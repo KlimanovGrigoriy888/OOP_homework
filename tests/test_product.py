@@ -1,3 +1,6 @@
+import pytest
+
+from src.base_product import BaseProduct
 from src.product import Product
 from unittest.mock import patch
 
@@ -61,3 +64,22 @@ def test_product():
     # 4. Некорректная цена
     product_1.price = -100
     assert product_1.price == 150000.0
+
+
+def test_product_assert():
+    # Тест на исключение добавления продукта с нулевым количеством
+    with pytest.raises(ValueError):
+        Product.new_product(
+            {
+                "name": "Samsung Galaxy S23 Ultra",
+                "description": "456GB, Белый цвет, 200MP камера",
+                "price": 18000.0,
+                "quantity": 0,
+            }
+        )
+
+
+def test_base_product_cannot_instantiate():
+    # Тест базового класса на инициализацию
+    with pytest.raises(TypeError):
+        BaseProduct()

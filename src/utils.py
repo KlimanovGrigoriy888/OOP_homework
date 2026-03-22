@@ -1,5 +1,7 @@
 import json
 import os
+from json import JSONDecodeError
+from typing import Any
 
 from src.product import Product
 from src.сategory import Category
@@ -7,13 +9,18 @@ from src.сategory import Category
 PATH_TO_PRODUCTS_JSON = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "products.json")
 
 
-def read_json(path: str) -> dict[list]:
-    with open(path, "r", encoding="UTF-8") as file:
-        data = json.load(file)
-    return data
+def read_json(path: str) -> dict[Any, Any] | Any:
+    if not os.path.exists(path):
+        return {}
+    try:
+        with open(path, "r", encoding="UTF-8") as file:
+            data = json.load(file)
+        return data
+    except (JSONDecodeError, FileNotFoundError):
+        return {}
 
 
-def make_objects_from_json(data: dict):
+def make_objects_from_json(data: dict) -> list[dict]:
     """ " Функция, принимает путь к файлу с категориями продуктов и продуктами,
     и создает объекты классов Category и Product"""
     category_product = []
@@ -30,15 +37,16 @@ def make_objects_from_json(data: dict):
     return category_product
 
 
-if __name__ == "__main__":
-    data_products = read_json(PATH_TO_PRODUCTS_JSON)
-    product_category = make_objects_from_json(data_products)
-
-    print(product_category[0].description)
-    print(product_category[0].product_count)
-    print(product_category[0].products)
-    print(product_category[0].name)
-    print(product_category[1].product_count)
-    print(product_category[1].description)
-    print(product_category[1].products)
-    print(product_category[1].name)
+# if __name__ == "__main__":
+#     data_products = read_json(PATH_TO_PRODUCTS_JSON)
+#     print(data_products)
+#     product_category = make_objects_from_json(data_products)
+#
+#     print(product_category[0].description)
+#     print(product_category[0].product_count)
+#     print(product_category[0].products)
+#     print(product_category[0].name)
+#     print(product_category[1].product_count)
+#     print(product_category[1].description)
+#     print(product_category[1].products)
+#     print(product_category[1].name)
