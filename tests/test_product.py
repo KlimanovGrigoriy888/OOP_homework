@@ -1,5 +1,6 @@
 import pytest
 
+from src.base_product import BaseProduct
 from src.product import Product
 from unittest.mock import patch
 
@@ -76,3 +77,9 @@ def test_product_assert():
                 "quantity": 0,
             }
         )
+
+
+def test_base_product_cannot_instantiate():
+    # Тест базового класса на инициализацию
+    with pytest.raises(TypeError):
+        product_with_base = BaseProduct()
